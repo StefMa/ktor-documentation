@@ -291,13 +291,15 @@ To use the `WinHttp` engine, follow the steps below:
 For desktop platforms, Ktor also provides the `Curl` engine. This engine is supported for the following platforms: `linuxX64`, `macosX64`, `macosArm64`, `mingwX64`. To use the `Curl` engine, follow the steps below:
 
 1. Install the [libcurl library](https://curl.se/libcurl/).
-   > On Windows, you may want to consider the [MinGW/MSYS2](FAQ.topic#native-curl) `curl` binary. 
-2. Add the `ktor-client-curl` dependency:
+   > On Linux, you have to install the `gnutls` version of libcurl.
+
+   > On Windows, you may want to consider the [MinGW/MSYS2](FAQ.topic#native-curl) `curl` binary.
+3. Add the `ktor-client-curl` dependency:
 
    <var name="artifact_name" value="ktor-client-curl"/>
    <var name="target" value="-macosx64"/>
    <include from="lib.topic" element-id="add_ktor_artifact_mpp"/>
-3. Pass the `Curl` class as an argument to the `HttpClient` constructor:
+4. Pass the `Curl` class as an argument to the `HttpClient` constructor:
    ```kotlin
    import io.ktor.client.*
    import io.ktor.client.engine.curl.*
@@ -305,7 +307,7 @@ For desktop platforms, Ktor also provides the `Curl` engine. This engine is supp
    val client = HttpClient(Curl)
    ```
 
-4. To configure an engine, pass settings exposed by `CurlClientEngineConfig` to the `engine` method.
+5. To configure an engine, pass settings exposed by `CurlClientEngineConfig` to the `engine` method.
    The code snippet below shows how to disable SSL verification for testing purposes:
    ```kotlin
    ```
